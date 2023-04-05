@@ -4,17 +4,17 @@ const client = require('../db/db.js');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-     if (file.fieldname === "foto_profile") {
-         cb(null, './uploads')
-     }
-     else if (file.fieldname === "foto_ktp") {
-         cb(null, './uploads');
+    if (file.fieldname === "foto_profile") {
+      cb(null, './uploads')
+    }
+    else if (file.fieldname === "foto_ktp") {
+      cb(null, './uploads');
      }
   },
   filename:(req,file,cb)=>{
-      if (file.fieldname === "foto_profile") {
-          cb(null, file.fieldname+Date.now()+path.extname(file.originalname));
-      }
+    if (file.fieldname === "foto_profile") {
+      cb(null, file.fieldname+Date.now()+path.extname(file.originalname));
+    }
     else if (file.fieldname === "foto_ktp") {
       cb(null, file.fieldname+Date.now()+path.extname(file.originalname));
     }
@@ -70,7 +70,6 @@ function checkFileType(file, cb) {
   exports.postingDataNasabah=async(req,res)=>{    
     const allquery =await client.query(`INSERT INTO nasabah(nik, nama, alamat, no_hp, kd_prov, kd_kab, foto_profile, foto_ktp, hobi, gaji) VALUES ('${req.body.nik}', '${req.body.nama}', '${req.body.alamat}', '${req.body.no_hp}', '${req.body.kd_prov}', '${req.body.kd_kab}', '${req.files.foto_profile[0].path}', '${req.files.foto_ktp[0].path}', '${req.body.hobi}', '${req.body.gaji}')`);
     res.status(200).json({'statusCode':200, 'status':true, message: 'Image added','data':[]});
-      
   }
 
   exports.deleteDataNasabah=async(req,res)=>{   
