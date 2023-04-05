@@ -83,7 +83,7 @@ function checkFileType(file, cb) {
   exports.getListNasabah=async(req,res)=>{
     var allquery;
     
-    if (req.query.q !== null) {
+    if (req.query.q) {
       allquery =await client.query('select * from nasabah where nama Ilike $1', [`%${req.query.q}%`]);
     } else {
       allquery =await client.query('select * from nasabah');
