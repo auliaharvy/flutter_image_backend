@@ -81,8 +81,14 @@ function checkFileType(file, cb) {
   }
 
   exports.getListNasabah=async(req,res)=>{
+    var allquery;
     
-    const allquery =await client.query(`SELECT * FROM public.nasabah `);
-  
+    if (req.query.q !== null) {
+      allquery =await client.query('select * from nasabah where nama Ilike $1', [`%${req.query.q}%`]);
+    } else {
+      allquery =await client.query('select * from nasabah');
+    }
+    
+    
     res.status(200).json({'statusCode':200, 'status':true, message: 'Success get list','data':allquery.rows});
   }
