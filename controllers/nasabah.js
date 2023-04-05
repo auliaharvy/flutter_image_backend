@@ -67,7 +67,8 @@ function checkFileType(file, cb) {
     ]
   );
             
-  exports.postingDataNasabah=async(req,res)=>{   
+  exports.postingDataNasabah=async(req,res)=>{  
+    console.log(req.body) 
     const allquery =await client.query(`INSERT INTO nasabah(nik, nama, alamat, no_hp, kd_prov, kd_kab, foto_profile, foto_ktp, hobi, gaji) VALUES ('${req.body.nik}', '${req.body.nama}', '${req.body.alamat}', '${req.body.no_hp}', '${req.body.kd_prov}', '${req.body.kd_kab}', '${req.files.foto_profile[0].path}', '${req.files.foto_ktp[0].path}', '${req.body.hobi}', '${req.body.gaji}')`);
     res.status(200).json({'statusCode':200, 'status':true, message: 'Image added','data':[]});
   }
