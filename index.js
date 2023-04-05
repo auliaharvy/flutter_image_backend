@@ -14,8 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
 require('./routes/image_routes')(app);
+require('./routes/nasabah_routes')(app);
 
 app.use('/images',express.static('images'));
+app.use('/uploads',express.static('uploads'));
 
 app.get('/', (req, res) => { 
     res.send("Heyy!!"); 
