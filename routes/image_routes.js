@@ -9,8 +9,5 @@ module.exports = function(app) {
     app.post('/upload/upload-multiple-image', controller.upload.array('icon', 'status', 12),controller.uploadMultipleImage);
 
     app.get('/list/images', controller.getListImage);
-
-    app.get('/list/provinsi', controller.getListProvinsi);
-    app.get('/list/kabupaten', controller.getListKabupaten);
     
 };
